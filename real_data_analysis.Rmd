@@ -1,0 +1,26 @@
+---
+title: "real_data_analysis"
+author: "Anne STAFF, Bianca BOI"
+date: "2023-05-01"
+output: pdf_document
+---
+```{r}
+gpigs <- read.table("surv.gpigs.txt", header = T, sep = ";")
+gpigs.noncensored <- gpigs[gpigs$censored == 0,]
+
+gpigs.mc <- gpigs.noncensored$lifetime[gpigs.noncensored$regime == "M_C"]
+gpigs.mc.with_censored <- gpigs$lifetime[gpigs$regime == "M_C"]
+gpigs.m43 <- gpigs.noncensored$lifetime[gpigs.noncensored$regime == "M_4.3"]
+```
+
+
+Provide meaningful descriptive statistics to compare the two treatments M4.3 and M.C.
+
+```{r}
+summary(gpigs.mc.with_censored)
+```
+
+```{r}
+summary(gpigs.m43)
+```
+
