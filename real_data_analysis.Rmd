@@ -4,7 +4,12 @@ author: "Anne STAFF, Bianca BOI"
 date: "2023-05-01"
 output: pdf_document
 ---
+
+## Real data analysis
+
+Preparation (dependencies & data):
 ```{r}
+library(fitdistrplus)
 gpigs <- read.table("surv.gpigs.txt", header = T, sep = ";")
 gpigs.noncensored <- gpigs[gpigs$censored == 0,]
 
@@ -13,6 +18,7 @@ gpigs.mc.with_censored <- gpigs$lifetime[gpigs$regime == "M_C"]
 gpigs.m43 <- gpigs.noncensored$lifetime[gpigs.noncensored$regime == "M_4.3"]
 ```
 
+### Description of the data
 
 Provide meaningful descriptive statistics to compare the two treatments M4.3 and M.C.
 
@@ -22,5 +28,102 @@ summary(gpigs.mc.with_censored)
 
 ```{r}
 summary(gpigs.m43)
+```
+
+### Distribution fit
+
+Using the R-package 'fitdistrplus', fit a distribution to the 'lifetime' variable for both control and treatment taking into account the right censoring. Start with Exponential distribution. Interpret the parameter estimates.
+
+#### Exponential distribution
+
+```{r warning=FALSE}
+fe <- fitdist(gpigs.mc, "exp")
+fe$estimate
+```
+TO DO: interpret the rate estimate
+
+```{r}
+denscomp(list(fe))
+```
+TO DO: describe why it's not adapted
+
+
+#### Weibull, Gamma, log-Normal fit on the control group
+
+```{r warning=FALSE}
+fw <- fitdist(gpigs.mc, "weibull")
+fg <- fitdist(gpigs.mc, "gamma") 
+fln <- fitdist(gpigs.mc, "lnorm") 
+plot.legend <- c("Weibull", "lognormal", "gamma")
+denscomp(list(fw, fln, fg), legendtext = plot.legend) 
+qqcomp(list(fw, fln, fg), legendtext = plot.legend) 
+cdfcomp(list(fw, fln, fg), legendtext = plot.legend) 
+ppcomp(list(fw, fln, fg), legendtext = plot.legend)
+```
+
+#### Weibull, Gamma, log-Normal fit on the 4.3 group
+
+```{r warning=FALSE}
+fw <- fitdist(gpigs.m43, "weibull")
+fg <- fitdist(gpigs.m43, "gamma") 
+fln <- fitdist(gpigs.m43, "lnorm") 
+plot.legend <- c("Weibull", "lognormal", "gamma")
+denscomp(list(fw, fln, fg), legendtext = plot.legend) 
+qqcomp(list(fw, fln, fg), legendtext = plot.legend) 
+cdfcomp(list(fw, fln, fg), legendtext = plot.legend) 
+ppcomp(list(fw, fln, fg), legendtext = plot.legend)
+```
+```{r}
+fw$estimate
+```
+TO DO : interpret estimates
+
+```{r}
+fg$estimate
+```
+TO DO : interpret estimates
+
+```{r}
+fln$estimate
+```
+TO DO : interpret estimates
+
+#### log-Logistic
+Define the distribution function & compagnie
+```{r}
+dloglogis <- function(x, alpha, beta) {
+  res <- (beta/alpha) * (x/alpha)^(beta-1)*(1+(x/alpha)^beta)^-2
+  return(res)
+}
+
+ploglogis <- function(q, alpha, beta) {
+  res <- 1 / (1 + (q/alpha)^beta)
+  return(res)
+}
+
+qloglogis <- function(p, alpha, beta) {
+  res <- alpha * ((1/p) - 1)^(1/beta)
+  return(res)
+}
+```
+
+##### Control group
+```{r warning=FALSE}
+# MC regime (sans données censorées pour le dist)
+fll <- fitdist(gpigs.mc, "loglogis", method = "mle", start=list(alpha=10, beta=5))
+fll$estimate
+denscomp(list(fll), main = "MC regime")
+```
+
+##### M4.3-Regime group
+```{r warning=FALSE}
+# M4.3 regime
+fll <- fitdist(gpigs.noncensored$lifetime[gpigs.noncensored$regime == "M_4.3"], "loglogis", method = "mle", start=list(alpha=10, beta=5))
+fll$estimate
+```
+TO DO: interpret estimates
+
+```{r warning=FALSE}
+denscomp(list(fll), main = "M4.3 regime")
 ```
 

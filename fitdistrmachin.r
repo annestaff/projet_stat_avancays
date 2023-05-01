@@ -29,11 +29,11 @@ qloglogis <- function(p, alpha, beta) {
 
 library(fitdistrplus)
 # MC regime (sans données censorées pour le dist)
-fw <- fitdist(gpigs.mc, "loglogis", method = "mle", start=list(alpha=10, beta=5))
-fw$estimate
-denscomp(list(fw), main = "MC regime")
+fll <- fitdist(gpigs.mc, "loglogis", method = "mle", start=list(alpha=10, beta=5))
+fll$estimate
+denscomp(list(fll), main = "MC regime")
 
 # M4.3 regime
-fw <- fitdist(gpigs.noncensored$lifetime[gpigs.noncensored$regime == "M_4.3"], "loglogis", method = "mle", start=list(alpha=10, beta=5))
-fw$estimate
-denscomp(list(fw), main = "M4.3 regime")
+fll <- fitdist(gpigs.noncensored$lifetime[gpigs.noncensored$regime == "M_4.3"], "loglogis", method = "mle", start=list(alpha=10, beta=5))
+fll$estimate
+denscomp(list(fll), main = "M4.3 regime")
