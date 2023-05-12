@@ -26,6 +26,15 @@ qloglogis <- function(p, alpha, beta) {
   return(res)
 }
 
+rloglogis <- function(n, alpha, beta) {
+  u <- runif(n)  # Generate n random numbers from a uniform distribution
+  
+  x <- alpha * ((1 / u - 1)^(-1 / beta))  # Transform the uniform random numbers using the inverse CDF
+  
+  return(x)
+}
+
+
 
 library(fitdistrplus)
 # MC regime (sans données censorées pour le dist)
@@ -37,3 +46,4 @@ denscomp(list(fll), main = "MC regime")
 fll <- fitdist(gpigs.noncensored$lifetime[gpigs.noncensored$regime == "M_4.3"], "loglogis", method = "mle", start=list(alpha=10, beta=5))
 fll$estimate
 denscomp(list(fll), main = "M4.3 regime")
+

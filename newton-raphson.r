@@ -170,5 +170,5 @@ NR_fit_LogLogistic_hessian <- function(x, params_0, eps = 0.0001)
   list(params = params, H = H)
 }
 
-NR_fit_LogLogistic_hessian(gpigs.m43, c(150, 2))
+NR_fit_LogLogistic_hessian(gpigs.m43, c(150, 3))
 # IT WOOOOORKS WOOHOOOOO
