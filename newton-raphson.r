@@ -71,11 +71,6 @@ NR_fit_LogLogistic <- function(x, params_0, eps = 0.001)
   {
     params.old <- params
     
-    # Intermediary variables
-    w1 <- sum((x/alpha)^beta * (1 + (x/alpha)^beta)^-1)
-    w2 <- sum(log(x) * (x/alpha)^beta * (1 + (x/alpha)^beta)^-1)
-    w3 <- sum(log(x)^2 * (x/alpha)^beta * (1 + (x/alpha)^beta)^-1)
-    
     # Gradient vector
     logx_over_alpha <- log(x/alpha)
     if (any(is.nan(logx_over_alpha))) {
@@ -150,11 +145,6 @@ NR_fit_LogLogistic_hessian <- function(x, params_0, eps = 0.001)
   {
     params.old <- params
     
-    # Intermediary variables
-    w1 <- sum((x/alpha)^beta * (1 + (x/alpha)^beta)^-1)
-    w2 <- sum(log(x) * (x/alpha)^beta * (1 + (x/alpha)^beta)^-1)
-    w3 <- sum(log(x)^2 * (x/alpha)^beta * (1 + (x/alpha)^beta)^-1)
-    
     # Gradient vector
     logx_over_alpha <- log(x/alpha)
     if (any(is.nan(logx_over_alpha))) {
@@ -168,7 +158,7 @@ NR_fit_LogLogistic_hessian <- function(x, params_0, eps = 0.001)
     # Hessian matrix
     H <- loglogistic_hessian(x, n, alpha, beta)
     
-    # Update parametres using jacobian matrix
+    # Update parametres using hessian matrix
     params <- params - solve(H) %*% s
     
     alpha <- params[1]
