@@ -130,7 +130,7 @@ loglogistic_hessian <- function(x, n, alpha, beta) {
 }
 
 
-NR_fit_LogLogistic_hessian <- function(x, params_0, eps = 0.001)
+NR_fit_LogLogistic_hessian <- function(x, params_0, eps = 0.0001)
 {
   params <- params_0
   n <- length(x)
@@ -141,7 +141,7 @@ NR_fit_LogLogistic_hessian <- function(x, params_0, eps = 0.001)
   alpha <- params_0[1]
   beta <- params_0[2]
   
-  while (diff > eps)
+  while (any(diff > eps))
   {
     params.old <- params
     
@@ -170,5 +170,5 @@ NR_fit_LogLogistic_hessian <- function(x, params_0, eps = 0.001)
   list(params = params, H = H)
 }
 
-NR_fit_LogLogistic_hessian(gpigs.m43, c(150, 3))
+NR_fit_LogLogistic_hessian(gpigs.m43, c(150, 2))
 # IT WOOOOORKS WOOHOOOOO
