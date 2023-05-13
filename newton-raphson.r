@@ -155,14 +155,14 @@ NR_fit_LogLogistic_hessian <- function(x, params_0, eps = 0.0001)
                sum(logx_over_alpha * (x/alpha)^beta * (1 + (x/alpha)^beta)^-2))
     }
     
-    # Hessian matrix
-    H <- loglogistic_hessian(x, n, alpha, beta)
-    
-    # Update parametres using hessian matrix
-    params <- params - solve(H) %*% s
-    
-    alpha <- params[1]
-    beta <- params[2]
+    # Calculate Hessian matrix unless there are NaNs
+    if (!any(is.nan(logx_over_alpha))) {
+      H <- loglogistic_hessian(x, n, alpha, beta)
+      # Update parametres using hessian matrix
+      params <- params - solve(H) %*% s
+      alpha <- params[1]
+      beta <- params[2]
+    }
     
     diff <- abs(sum(params - params.old))
   }

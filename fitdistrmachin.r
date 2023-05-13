@@ -37,8 +37,8 @@ rloglogis <- function(n, alpha, beta) {
 
 
 library(fitdistrplus)
-# MC regime (sans données censorées pour le dist)
-fll <- fitdist(gpigs.mc, "loglogis", method = "mle", start=list(alpha=10, beta=5))
+# MC regime
+fll <- fitdist(gpigs.mc.with_censored, "loglogis", method = "mle", start=list(alpha=10, beta=5))
 fll$estimate
 denscomp(list(fll), main = "MC regime")
 

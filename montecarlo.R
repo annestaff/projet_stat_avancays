@@ -6,39 +6,53 @@ source("fitdistrmachin.r")
 source("newton-raphson.r")
 set.seed(42)
 #####################################
-n_values <- c(100, 500, 1000, 5000, 10000)
-I <- 1000
-alpha0 <- 300
-beta0 <- 5
+# some values needed for later
+n_values <- c(100, 500, 1000, 5000, 10000) # sample sizes
+I <- 5000 # no. of iterations
+alpha0 <- 199.5
+beta0 <- 5.55
 #####################################
-mc <- function(n, I, alpha0, beta0) {
-  est <- matrix(nrow = 0, ncol = 2)
-  mse <- matrix(nrow = 0, ncol = 2)
-  for (i in 1:I) {
-    dat <- rloglogis(n, alpha0, beta0)
-    est_temp <- NR_fit_LogLogistic_hessian(dat, c(alpha0, beta0))$params
-    est <- rbind(est, c(est_temp[1,1], est_temp[2,1]))
-    mse_alpha <- mean((est[i,1] - alpha0)^2)
-    mse_beta <- mean((est[i,2] - beta0)^2)
-    mse <- rbind(mse, c(mse_alpha, mse_beta))
-  }
-  return(colMeans(mse))
+# censoring function, for a given quantile sets the max value and censors everything above
+censor <- function(x, p = 0.9) {
+  # for example the top 10% is everything above the 0.9 quantile
+  top_ten <- quantile(x, p)
+  res = x
+  # censor that shit
+  res[x > top_ten] = top_ten
+  return(res)
 }
-test_mc <- mc(n, I, alpha_0, beta_0)
+#####################################
+# the montecarlo iteration for a given sample size
+mc <- function(n, I, alpha0, beta0) {
+  # initialise the matrices that will track the estimates throughout the iterations
+  est <- matrix(nrow = 0, ncol = 2)
+  # iterate
+  for (i in 1:I) {
+    print(c(i, I))
+    # create random data set that follows a log-logistic distribution with the given parametres
+    dat <- rloglogis(n, alpha0, beta0)
+    # censor the top 10%
+    dat_censored <- censor(dat)
+    est_temp <- NR_fit_LogLogistic_hessian(dat_censored, c(alpha0, beta0), 0.000001)$params
+    est <- rbind(est, c(est_temp[1,1], est_temp[2,1]))
+  }
+  return(c(mean((est[,1] - alpha0)^2), mean((est[,2] - beta0)^2)))
+}
+test_mc <- mc(100, I, alpha0, beta0)
 #####################################
 res <- matrix(nrow = 2, ncol = 0)
 for (i in 1:length(n_values)) {
   res <- cbind(res, mc(n_values[i], I, alpha0, beta0))
 }
 colnames(res) <- n_values
-write.table(res, "mc_res.csv")
+write.table(res, "mc_res_with_censoring_5k_iterations_199p5_5p55.csv")
 #####################################
 # res <- read.table("mc_res.csv")
 
 barplot(log(res),
         col = c("blue", "orange"),
         beside = TRUE,
-        main = "Mean square error of the NR-fit parameter estimates \n based on sample size for the \n Log-Logistic distribution \n (Logarithmic scale)", xlab = "Sample size", ylab = "log(MSE")
+        main = "Mean square error of the NR-fit parameter estimates \n based on sample size for the \n Log-Logistic distribution \n (Logarithmic scale)", xlab = "Sample size", ylab = "log(MSE)")
 legend("topright",
        legend = c("Alpha", "Beta"),
        fill = c("blue", "orange"))
