@@ -40,14 +40,14 @@ mc <- function(n, I, alpha0, beta0) {
 }
 # test_mc <- mc(100, I, alpha0, beta0)
 #####################################
-res <- matrix(nrow = 2, ncol = 0)
-for (i in 1:length(n_values)) {
-  res <- cbind(res, mc(n_values[i], I, alpha0, beta0))
-}
-colnames(res) <- n_values[1:4]
-write.table(res, "mc_res_with_censoring_1k_iterations_452_2.csv")
+# res <- matrix(nrow = 2, ncol = 0)
+# for (i in 1:length(n_values)) {
+#   res <- cbind(res, mc(n_values[i], I, alpha0, beta0))
+# }
+# colnames(res) <- n_values[1:4]
+# write.table(res, "mc_res_with_censoring_1k_iterations_452_2.csv")
 #####################################
-# res <- read.table("mc_res.csv")
+res <- as.matrix(read.table("mc_res_with_censoring_1k_iterations_452_2.csv",header=T))
 
 barplot(log(res),
         col = c("blue", "orange"),

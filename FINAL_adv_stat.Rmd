@@ -2,85 +2,86 @@
 title: "Advanced statistic"
 author: "Anne STAFF, Bianca BOI"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
+editor_options:
+  markdown:
+    wrap: 72
 ---
 
-
-
-<br>
-<br>
-<br>
+<br> <br> <br>
 
 # Description of the project
-<br>
-<br>
-• in the first part, you will obtain the maximum likelihood estimator for the Log-logistic distribution
-and implement a Newton-Raphson algorithm. 
-<br>
 
+<br> <br> • in the first part, you will obtain the maximum likelihood
+estimator for the Log-logistic distribution and implement a
+Newton-Raphson algorithm. <br>
 
+• in the second part, you will study the real data set using descriptive
+statistics and an R-package for maximum likelihood estimation. You will
+also obtain bootstrap-based confidence intervals.
 
-• in the second part, you will study the real data set using descriptive statistics and an R-package for
-maximum likelihood estimation. You will also obtain bootstrap-based confidence intervals.
-
-<br>
-<br>
-<br>
+<br> <br> <br>
 
 # Maximum Likelihood estimation
-<br>
-<br>
 
+<br> <br>
 
-We are interested in estimating the parameters of a Log-logistic distribution. $X \sim LL(\alpha , \beta)$ if X has a probability density function :
+We are interested in estimating the parameters of a Log-logistic
+distribution. $X \sim LL(\alpha , \beta)$ if X has a probability density
+function :
 $$f_X (x) = \frac{(\frac{\beta}{\alpha})(\frac{x}{\alpha})^{\beta-1}}{[1+(\frac{x}{\alpha})^\beta]^2} , x,\alpha,\beta > 0$$
-We consider an i.i.d n-sample $(X_1,...,X_n)$ where the $X_i$'s arise from a Log-logistic distribution subject to random right censoring.
-<br>
-<br>
-<br>
+We consider an i.i.d n-sample $(X_1,...,X_n)$ where the $X_i$'s arise
+from a Log-logistic distribution subject to random right censoring. <br>
+<br> <br>
 
 ## Corresponding statistical model
-<br>
-<br>
 
-The corresponding statistical model for the given data, which follows a log-logistic distribution subject to random right censoring, is the censored log-logistic regression model.
+<br> <br>
 
-This model allows for the estimation of the parameters of the log-logistic distribution, taking into account the censoring of some observations at a pre-specified threshold value.
+The corresponding statistical model for the given data, which follows a
+log-logistic distribution subject to random right censoring, is the
+censored log-logistic regression model.
 
+This model allows for the estimation of the parameters of the
+log-logistic distribution, taking into account the censoring of some
+observations at a pre-specified threshold value.
 
-The density probability is : $$f_X (x_i; \alpha,\beta) = \frac{(\frac{\beta}{\alpha})(\frac{x_i}{\alpha})^{\beta-1}}{[1+(\frac{x_i}{\alpha})^\beta]^2} , x,\alpha,\beta > 0$$
-The cumulative distribution function is the following : 
+The density probability is :
+$$f_X (x_i; \alpha,\beta) = \frac{(\frac{\beta}{\alpha})(\frac{x_i}{\alpha})^{\beta-1}}{[1+(\frac{x_i}{\alpha})^\beta]^2} , x,\alpha,\beta > 0$$
+The cumulative distribution function is the following :
 $$F(X_i; \alpha,\beta) = \frac{1}{1 +(\frac{X_i}{\alpha})^\beta} $$
 
-The non-parametric survival function $S(t;  \alpha,\beta)$ is given by:
+The non-parametric survival function $S(t; \alpha,\beta)$ is given by:
 
 $$S(t; \alpha,\beta) = 1-F(t) = [1 + (\frac{t}{\alpha})^\beta]^-1$$
 
-where t is the time, and $\alpha$ and $\beta$ are the parameters of the log-logistic distribution.
+where t is the time, and $\alpha$ and $\beta$ are the parameters of the
+log-logistic distribution.
 
+$X \sim LL(\alpha , \beta)$ and we consider an i.i.d n-sample
+$(X_1,...,X_n)$ where the $X_i$'s arise from a Log-logistic distribution
+so the sampling hypothesis is admitted.
 
+The c.d.f of X belongs well to a parametric family $F$, such that :
+$$F = \{ F_\theta;\theta \in \Theta \}$$
 
-$X \sim LL(\alpha , \beta)$ and we consider an i.i.d n-sample $(X_1,...,X_n)$ where the $X_i$'s arise from a Log-logistic distribution so the sampling hypothesis is admitted. 
-
-The c.d.f of X belongs well to a parametric family $F$, such that : 
-$$F = \{ F_\theta;\theta \in \Theta \}$$ 
-
-
-Where $ \Theta \subseteq R^d $ is a parameter space, so the parametric hypothesis is admitted.
+Where \$ \Theta \subseteq R\^d \$ is a parameter space, so the
+parametric hypothesis is admitted.
 
 $$F(\theta; \alpha,\beta) = \frac{1}{1 +(\frac{\theta}{\alpha})^\beta} =  F(\theta'; \alpha,\beta) = \frac{1}{1 +(\frac{\theta'}{\alpha})^\beta} \iff \theta = \theta' $$
-So the identifiability is admitted. 
+So the identifiability is admitted.
 
-There exist well a measure $\mu$ on the Borel sets of $R^m$ s.t $F_\theta$ admits a density $f(x;\theta)$ w.r.t $\mu$. In our case $\mu$ is the Lebesgue measure on $R^p$ because we are in the continuous case.
+There exist well a measure $\mu$ on the Borel sets of $R^m$ s.t
+$F_\theta$ admits a density $f(x;\theta)$ w.r.t $\mu$. In our case $\mu$
+is the Lebesgue measure on $R^p$ because we are in the continuous case.
 
-<br>
-<br>
-<br>
+<br> <br> <br>
 
 ## Log Likelihood
-<br>
-<br>
+
+<br> <br>
 
 $$MLE(x_i) = \prod_{i=1}^{n}  \frac{(\frac{\beta}{\alpha})(\frac{X_i}{\alpha})^{\beta-1}}{[1+(\frac{X_i}{\alpha})^\beta]^2} $$
 
@@ -88,71 +89,65 @@ $$log L(Xi; \alpha, \beta) = \sum_{i=1}^{n}  log \left(\frac{(\frac{\beta}{\alph
 
 $$log L(Xi; \alpha, \beta) = n log(\beta) - n\beta log(\alpha) + (\beta-1)\sum_{i=1}^{n} log(X_i) -2\sum_{i=1}^{n} log[1 + (\frac{X_i}{\alpha})^\beta] $$
 
-<br>
-<br>
-<br>
+<br> <br> <br>
 
 ## Score equations and Hessian matrix
-<br>
-<br>
-To calculate the score equations we have to derivate the logL over $\alpha$ or $\beta$.
+
+<br> <br> To calculate the score equations we have to derivate the logL
+over $\alpha$ or $\beta$.
 $$Score(\alpha) = \frac{\partial log L}{\partial \alpha} = -\frac{n\beta}{\alpha} + 2\sum_{i=1}^{n} \frac{(\frac{\beta}{X_i})(\frac{X_i}{\alpha})^{\beta - 1}}{[1 + (\frac{X_i}{\alpha})^\beta]}  $$
 $$Score(\beta) = \frac{\partial log L}{\partial \beta} = \frac{n}{\beta} - nlog(\alpha) + \sum_{i=1}^{n} log(X_i) + 2\sum_{i=1}^{n} \frac{(\frac{X_i}{\alpha})^\beta log(\frac{X_i}{\alpha})}{[1 + (\frac{X_i}{\alpha})^\beta]}   $$
 
-<br>
-<br>
+<br> <br>
 
 Hessian Matrix:
 
-
+```{=tex}
 \begin{pmatrix} 
         \frac{\partial^2 log L}{\partial \alpha^2} & \frac{\partial^2 log L}{\partial \alpha \partial \beta} \\ \frac{\partial^2 log L}{\partial \beta \partial \alpha} & \frac{\partial^2 log L}{\partial \beta^2}
-\end{pmatrix} 
+\end{pmatrix}
+```
+with :
+$\frac{\partial^2 log L}{\partial \alpha \partial \beta} = \frac{\partial^2 log L}{\partial \beta \partial \alpha}$,
+we then have :
 
-
-with : $\frac{\partial^2 log L}{\partial \alpha \partial \beta} = \frac{\partial^2 log L}{\partial \beta \partial \alpha}$, we then have :
-
- 
+```{=tex}
 \begin{pmatrix} 
         \frac{n\beta}{\alpha^2} - 2\sum_{i=1}^{n} \frac{\frac{\beta^2}{X_i^2} (\frac{X_i}{\alpha})^{\beta-1}}{[1 + (\frac{X_i}{\alpha})^\beta]^2}&  -\frac{n}{\alpha} + 2\sum_{i=1}^{n} \frac{X_i^\beta log(\frac{X_i}{\alpha})}{[1 + (\frac{X_i}{\alpha})^\beta]^2} \\ -\frac{n}{\alpha} + 2\sum_{i=1}^{n} \frac{X_i^\beta log(\frac{X_i}{\alpha})}{[1 + (\frac{X_i}{\alpha})^\beta]^2} & -\frac{n}{\beta^2} - 2\sum_{i=1}^{n} \frac{X_i^\beta log(\frac{X_i}{\alpha})}{[1 + (\frac{X_i}{\alpha})^\beta]^2}
-\end{pmatrix} 
-
-
-<br>
-<br>
-<br>
+\end{pmatrix}
+```
+<br> <br> <br>
 
 ## Newton Raphson algorithm
 
-<br>
-<br>
-Goal: find the root (x axis intersection) of a function, works for real and complex functions
+<br> <br> Goal: find an approximation of the root (x axis intersection)
+of a function, works for real and complex functions
 
-1. pick a random point x of the function ("first guess")
-2. find the tangent to the curve at that point x
-3. find the intersection of the tangent with the x axis and make it your new x
-4. repeat until you're close enough (delta-y below a certain threshold which defines that you're on a point)
+1.  pick a random point x of the function ("first guess")
+2.  find the tangent to the curve at that point x
+3.  find the intersection of the tangent with the x axis and make it
+    your new x
+4.  repeat until you're close enough (delta-y below a certain threshold
+    epsilon)
 
+Input: Function f(x), initial guess x0, tolerance epsilon, maximum
+number of iterations max_iterations
 
-Input: Function f(x), initial guess x0, tolerance epsilon, maximum number of iterations max\_iterations
+1.  Set $x = x_0$
+2.  Set iteration = 0
+3.  Repeat the following steps until convergence or reaching the maximum
+    number of iterations:
+    1.  Set $f\_x = f(x)$\
+    2.  Set $f\_prime\_x$ = derivative of $f(x)$
+    3.  Set $delta\_x = f\_x / f\_prime\_x$
+    4.  Set $x = x - delta\_x$
+    5.  Increment iteration by 1
+    6.  If abs($delta\_x$) \< epsilon or iteration \>=
+        $max\_iterations$, exit the loop
+4.  Output the final approximation x as the root of the function f(x)
+    <br> <br> <br> \## Newton Raphson algorithm on R <br> <br>
+    Preparation (dependencies & data):
 
-1. Set $x = x_0$
-2. Set iteration = 0
-3. Repeat the following steps until convergence or reaching the maximum number of iterations:
-      1. Set $f\_x = f(x)$        
-      2. Set $f\_prime\_x$ = derivative of $f(x)$
-      3. Set $delta\_x = f\_x / f\_prime\_x$
-      4. Set $x = x - delta\_x$
-      5. Increment iteration by 1
-      6. If abs($delta\_x$) < epsilon or iteration >= $max\_iterations$, exit the loop
-4. Output the final approximation x as the root of the function f(x)
-<br>
-<br>
-<br>
-## Newton Raphson algorithm on R
-<br>
-<br>
-Preparation (dependencies & data):
 ```{r warning=FALSE}
 library(fitdistrplus)
 gpigs <- read.table("surv.gpigs.txt", header = T, sep = ";")
@@ -164,9 +159,7 @@ gpigs.m43 <- gpigs.noncensored$lifetime[gpigs.noncensored$regime == "M_4.3"]
 
 ```
 
-
-<br>
-<br>
+<br> <br>
 
 ```{r}
 score_alpha <- function(x, alpha, beta) {
@@ -225,14 +218,13 @@ NR_fit_LogLogistic_hessian <- function(x, params_0, eps = 0.00001)
 
 NR_fit_LogLogistic_hessian(gpigs.m43, c(153, 3))
 ```
-<br>
-<br>
-<br>
+
+<br> <br> <br>
 
 ## Monte-Carlo experiment
 
-<br>
-<br>
+<br> <br>
+
 ```{r}
 
 res <- read.table("mc_res_with_censoring_1k_iterations_452_2.csv",header=T)
@@ -285,41 +277,51 @@ mc <- function(n, I, alpha0, beta0) {
 }
 # test_mc <- mc(100, I, alpha0, beta0)
 #####################################
-#res <- matrix(nrow = 2, ncol = 0)
-#for (i in 1:length(n_values)) {
-  #res <- cbind(res, mc(n_values[i], I, alpha0, beta0))
-#}
-#colnames(res) <- n_values[1:4]
-#write.table(res, "mc_res_with_censoring_1k_iterations_452_2.csv")
+# here we iterated through different sample sizes but it took several hours
+# so we saved ther esult as a csv and load it for the graph and for knitting this
+#
+# res <- matrix(nrow = 2, ncol = 0)
+# for (i in 1:length(n_values)) {
+#   res <- cbind(res, mc(n_values[i], I, alpha0, beta0))
+# }
+# colnames(res) <- n_values[1:4]
+# write.table(res, "mc_res_with_censoring_1k_iterations_452_2.csv")
 #####################################
-#res <- read.table("mc_res_with_censoring_1k_iterations_452_2.csv",header=T)
+res <- as.matrix(read.table("mc_res_with_censoring_1k_iterations_452_2.csv",header=T))
 
-#barplot(log(res),
-#        col = c("blue", "orange"),
-#        beside = TRUE,
-#        main = "Mean square error of the NR-fit parameter estimates \n based on sample size for the \n Log-Logistic distribution \n (Logarithmic scale)", xlab = "Sample size", ylab = "log(MSE)")
-#legend("topright",
-#       legend = c("Alpha", "Beta"),
-#       fill = c("blue", "orange"))
+barplot(log(res),
+        col = c("blue", "orange"),
+        beside = TRUE,
+        main = "Mean square error of the NR-fit parameter estimates \n based on sample size for the \n Log-Logistic distribution \n (Logarithmic scale)", xlab = "Sample size", ylab = "log(MSE)")
+
+
+legend("topright",
+       legend = c("Alpha", "Beta"),
+       fill = c("blue", "orange"))
 ```
-<br>
-<br>
-<br>
+
+<br> <br> <br>
+
+We chose a logarithmic scale to be able to see how both parametres
+evolve. Our observation is that the final parametre estimates vary a lot
+more based on the choice of initial parametres though. Same goes for
+computation time, it can be exorbitantly high depending on which initial
+parametres we put. Probably our NR-fit function isn't very robust.
 
 # Real data analysis
 
-<br>
-<br>
+<br> <br>
 
 ## Comparison of 2 treatments with descriptive analysis
 
-<br>
-<br>
-In our data we have the lifetimes of guinea pigs in days and also their regime and if the value of the lifetime is censored or not.
+<br> <br> In our data we have the lifetimes of guinea pigs in days and
+also their regime and if the value of the lifetime is censored or not.
 
 We want to study the resistance of guinea pigs to Tubercle Bacili.
 
-We take for the MC guinea pigs all of them containing censored ones and non censored ones.
+We take for the MC guinea pigs all of them containing censored ones and
+non censored ones.
+
 ```{r}
 summary(gpigs.mc.with_censored)
 ```
@@ -327,54 +329,55 @@ summary(gpigs.mc.with_censored)
 ```{r}
 summary(gpigs.m43)
 ```
-As we can see, the guinea pigs with MC regime are surviving longer than the ones with M43 regime.
 
-The mean for the MC guinea pigs is around 500 wich is almost three times bigger than the mean for M43 guinea pigs ($176.8$)
-<br>
-<br>
-<br>
+As we can see, the guinea pigs with MC regime are surviving longer than
+the ones with M43 regime.
 
-## fit a distribution to the "lifetime" with Exponential distribution 
+The mean for the MC guinea pigs is around 500 wich is almost three times
+bigger than the mean for M43 guinea pigs ($176.8$) <br> <br> <br>
 
-<br>
-<br>
+## fit a distribution to the "lifetime" with Exponential distribution
+
+<br> <br>
 
 ### for MC group
+
 ```{r warning=FALSE}
 fe <- fitdist(gpigs.mc, "exp")
 fe$estimate
 ```
-This rate is pretty low so the mean distribution will be pretty high.
-Which is maybe not what we expected, The Histrogram will give more precision about it.
 
+This rate is pretty low so the mean distribution will be pretty high.
+Which is maybe not what we expected, The Histrogram will give more
+precision about it.
 
 ```{r}
 denscomp(list(fe))
 ```
-As we can see the exponential function is truly not adapted to our data.
-The curve is not following well the true values.
-<br>
-<br>
 
-### for M43 group 
+As we can see the exponential function is truly not adapted to our data.
+The curve is not following well the true values. <br> <br>
+
+### for M43 group
+
 ```{r warning=FALSE}
 fe <- fitdist(gpigs.m43, "exp") 
 fe$estimate
 ```
+
 ```{r}
 denscomp(list(fe))
 ```
-As we can see the fitting is a bit better with these data but still not good enought. 
-<br>
-<br>
-<br>
+
+As we can see the fitting is a bit better with these data but still not
+good enought. <br> <br> <br>
 
 ## Do the same for log logistic distribution
 
-<br>
-<br>
+<br> <br>
 
 ### Define the distribution function
+
 ```{r}
 dloglogis <- function(x, alpha, beta) {
   res <- (beta/alpha) * (x/alpha)^(beta-1)*(1+(x/alpha)^beta)^-2
@@ -389,22 +392,24 @@ qloglogis <- function(p, alpha, beta) {
   return(res)
 }
 ```
-<br>
-<br>
 
-### Control group : 
+<br> <br>
+
+### Control group :
+
 ```{r warning=FALSE}
 # MC regime (without censored data for the moment)
 fll <- fitdist(gpigs.mc, "loglogis", method = "mle", start=list(alpha=10, beta=5))
 fll$estimate
 ```
+
 ```{r}
 denscomp(list(fll), main = "MC regime")
 ```
-This graph represent the lifetimes of guinea pigs for animals with MC regime but without the censored data.
-As we can see the curve is following pretty well the data especially for the beginning.
-<br>
-<br>
+
+This graph represent the lifetimes of guinea pigs for animals with MC
+regime but without the censored data. As we can see the curve is
+following pretty well the data especially for the beginning. <br> <br>
 
 ### M4.3-Regime group :
 
@@ -413,20 +418,20 @@ As we can see the curve is following pretty well the data especially for the beg
 fll <- fitdist(gpigs.noncensored$lifetime[gpigs.noncensored$regime == "M_4.3"], "loglogis", method = "mle", start=list(alpha=10, beta=5))
 fll$estimate
 ```
-The estimation of alpha and beta are a bit different for the M43 guinea pigs than for the MC guinea pigs.
+
+The estimation of alpha and beta are a bit different for the M43 guinea
+pigs than for the MC guinea pigs.
 
 ```{r warning=FALSE}
 denscomp(list(fll), main = "M4.3 regime")
 ```
-In this case the loglogistic distribution fit perfectly with the data as we can see on the graph.
-<br>
-<br>
-<br>
+
+In this case the loglogistic distribution fit perfectly with the data as
+we can see on the graph. <br> <br> <br>
 
 ## Try other distributions
 
-<br>
-<br>
+<br> <br>
 
 ###Weibull, Gamma, log-Normal fit on the control group
 
@@ -437,18 +442,21 @@ fln <- fitdist(gpigs.mc, "lnorm")
 plot.legend <- c("Weibull", "lognormal", "gamma")
 denscomp(list(fw, fln, fg), legendtext = plot.legend) 
 ```
+
 ```{r}
 qqcomp(list(fw, fln, fg), legendtext = plot.legend) 
 ```
+
 ```{r}
 cdfcomp(list(fw, fln, fg), legendtext = plot.legend) 
 ```
+
 ```{r}
 ppcomp(list(fw, fln, fg), legendtext = plot.legend)
 ```
-The three other distribution are fitting pretty well to our data, but the closest distribution is the gamma distribution.
-<br>
-<br>
+
+The three other distribution are fitting pretty well to our data, but
+the closest distribution is the gamma distribution. <br> <br>
 
 ### Weibull, Gamma, log-Normal fit on the 4.3 group
 
@@ -471,34 +479,39 @@ cdfcomp(list(fw, fln, fg), legendtext = plot.legend)
 ```{r}
 ppcomp(list(fw, fln, fg), legendtext = plot.legend)
 ```
-Same than previously the distributions are fitting well to the data of M43 guinea pigs and the closest is either the gamma distribution either the lognormal distribution.
 
-<br>
-<br>
-We had estimated the $alpha = 152.4$ and $beta = 3.0$
+Same than previously the distributions are fitting well to the data of
+M43 guinea pigs and the closest is either the gamma distribution either
+the lognormal distribution.
+
+<br> <br> We had estimated the $alpha = 152.4$ and $beta = 3.0$
+
 ```{r}
 fw$estimate
 ```
-For the weibull distribution the shape (beta) is to low and the scale much to high.
+
+For the weibull distribution the shape (beta) is to low and the scale
+much to high.
 
 ```{r}
 fg$estimate
 ```
-for the gamma distribution, the shape and the rate looks pretty good and we will confirm this at the end.
+
+for the gamma distribution, the shape and the rate looks pretty good and
+we will confirm this at the end.
 
 ```{r}
 fln$estimate
 ```
+
 the meanlog and the sdlog are pretty fitting the data.
 
-<br>
-<br>
-<br>
+<br> <br> <br>
 
-## provide 95\% basic bootstrap confidence interval
+## provide 95% basic bootstrap confidence interval
 
-<br>
-<br>
+<br> <br>
+
 ```{r, warning =FALSE}
 
 loglogis <- function(x, alpha, beta) {
@@ -538,15 +551,11 @@ summary(npboot_CI)
     
 ```
 
-
-<br>
-<br>
-<br>
+<br> <br> <br>
 
 ## Use proper information criteria and goodness-of-fit plots to discuss the fit to the data.
 
-<br>
-<br>
+<br> <br>
 
 ```{r warning = FALSE}
 fw <- fitdist(gpigs.mc, "weibull")
@@ -567,9 +576,9 @@ gof_stats <- gofstat(model_list, fitnames = model_names)
 print(gof_stats)
 
 ```
-The most favorized distribution for the $mc$ guinea pigs is the gamma one closely followed by the weibull one.
-<br>
-<br>
+
+The most favorized distribution for the $mc$ guinea pigs is the gamma
+one closely followed by the weibull one. <br> <br>
 
 ```{r warning=FALSE}
 
@@ -592,5 +601,6 @@ print(gof_stats)
 
 ```
 
-In the case of $m43$ guinea pigs the most favorized distribution is the gamma distribution for the Goodness-of-fit statistics
-and the loglogistic for the Goodness-of-fit criteria.
+In the case of $m43$ guinea pigs the most favorized distribution is the
+gamma distribution for the Goodness-of-fit statistics and the
+loglogistic for the Goodness-of-fit criteria.
