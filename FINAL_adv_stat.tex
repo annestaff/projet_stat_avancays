@@ -1,0 +1,912 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Advanced statistic},
+  pdfauthor={Anne STAFF, Bianca BOI},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Advanced statistic}
+\author{Anne STAFF, Bianca BOI}
+\date{}
+
+\begin{document}
+\maketitle
+
+\hypertarget{description-of-the-project}{%
+\section{Description of the project}\label{description-of-the-project}}
+
+• in the first part, you will obtain the maximum likelihood estimator
+for the Log-logistic distribution and implement a Newton-Raphson
+algorithm.
+
+• in the second part, you will study the real data set using descriptive
+statistics and an R-package for maximum likelihood estimation. You will
+also obtain bootstrap-based confidence intervals.
+
+\hypertarget{maximum-likelihood-estimation}{%
+\section{Maximum Likelihood
+estimation}\label{maximum-likelihood-estimation}}
+
+We are interested in estimating the parameters of a Log-logistic
+distribution. \(X \sim LL(\alpha , \beta)\) if X has a probability
+density function :
+\[f_X (x) = \frac{(\frac{\beta}{\alpha})(\frac{x}{\alpha})^{\beta-1}}{[1+(\frac{x}{\alpha})^\beta]^2} , x,\alpha,\beta > 0\]
+We consider an i.i.d n-sample \((X_1,...,X_n)\) where the \(X_i\)'s
+arise from a Log-logistic distribution subject to random right
+censoring.
+
+\hypertarget{corresponding-statistical-model}{%
+\subsection{Corresponding statistical
+model}\label{corresponding-statistical-model}}
+
+The corresponding statistical model for the given data, which follows a
+log-logistic distribution subject to random right censoring, is the
+censored log-logistic regression model.
+
+This model allows for the estimation of the parameters of the
+log-logistic distribution, taking into account the censoring of some
+observations at a pre-specified threshold value.
+
+The density probability is :
+\[f_X (x_i; \alpha,\beta) = \frac{(\frac{\beta}{\alpha})(\frac{x_i}{\alpha})^{\beta-1}}{[1+(\frac{x_i}{\alpha})^\beta]^2} , x,\alpha,\beta > 0\]
+The cumulative distribution function is the following :
+\[F(X_i; \alpha,\beta) = \frac{1}{1 +(\frac{X_i}{\alpha})^\beta} \]
+
+The non-parametric survival function \(S(t; \alpha,\beta)\) is given by:
+
+\[S(t; \alpha,\beta) = 1-F(t) = [1 + (\frac{t}{\alpha})^\beta]^-1\]
+
+where t is the time, and \(\alpha\) and \(\beta\) are the parameters of
+the log-logistic distribution.
+
+\(X \sim LL(\alpha , \beta)\) and we consider an i.i.d n-sample
+\((X_1,...,X_n)\) where the \(X_i\)'s arise from a Log-logistic
+distribution so the sampling hypothesis is admitted.
+
+The c.d.f of X belongs well to a parametric family \(F\), such that :
+\[F = \{ F_\theta;\theta \in \Theta \}\]
+
+Where \[\Theta \subseteq R^d\] is a parameter space, so the parametric
+hypothesis is admitted.
+
+\[F(\theta; \alpha,\beta) = \frac{1}{1 +(\frac{\theta}{\alpha})^\beta} =  F(\theta'; \alpha,\beta) = \frac{1}{1 +(\frac{\theta'}{\alpha})^\beta} \iff \theta = \theta' \]
+So the identifiability is admitted.
+
+There exist well a measure \(\mu\) on the Borel sets of \(R^m\) s.t
+\(F_\theta\) admits a density \(f(x;\theta)\) w.r.t \(\mu\). In our case
+\(\mu\) is the Lebesgue measure on \(R^p\) because we are in the
+continuous case.
+
+\hypertarget{log-likelihood}{%
+\subsection{Log Likelihood}\label{log-likelihood}}
+
+\[MLE(x_i) = \prod_{i=1}^{n}  \frac{(\frac{\beta}{\alpha})(\frac{X_i}{\alpha})^{\beta-1}}{[1+(\frac{X_i}{\alpha})^\beta]^2} \]
+
+\[log L(Xi; \alpha, \beta) = \sum_{i=1}^{n}  log \left(\frac{(\frac{\beta}{\alpha})(\frac{Xi}{\alpha})^{\beta-1}}{[1+(\frac{Xi}{\alpha})^\beta]^2}\right)\]
+
+\[log L(Xi; \alpha, \beta) = n log(\beta) - n\beta log(\alpha) + (\beta-1)\sum_{i=1}^{n} log(X_i) -2\sum_{i=1}^{n} log[1 + (\frac{X_i}{\alpha})^\beta] \]
+
+\hypertarget{score-equations-and-hessian-matrix}{%
+\subsection{Score equations and Hessian
+matrix}\label{score-equations-and-hessian-matrix}}
+
+To calculate the score equations we have to derivate the logL over
+\(\alpha\) or \(\beta\).
+\[Score(\alpha) = \frac{\partial log L}{\partial \alpha} = -\frac{n\beta}{\alpha} + 2\sum_{i=1}^{n} \frac{(\frac{\beta}{X_i})(\frac{X_i}{\alpha})^{\beta - 1}}{[1 + (\frac{X_i}{\alpha})^\beta]}  \]
+\[Score(\beta) = \frac{\partial log L}{\partial \beta} = \frac{n}{\beta} - nlog(\alpha) + \sum_{i=1}^{n} log(X_i) + 2\sum_{i=1}^{n} \frac{(\frac{X_i}{\alpha})^\beta log(\frac{X_i}{\alpha})}{[1 + (\frac{X_i}{\alpha})^\beta]}   \]
+
+Hessian Matrix:
+
+\begin{pmatrix} 
+        \frac{\partial^2 log L}{\partial \alpha^2} & \frac{\partial^2 log L}{\partial \alpha \partial \beta} \\ \frac{\partial^2 log L}{\partial \beta \partial \alpha} & \frac{\partial^2 log L}{\partial \beta^2}
+\end{pmatrix}
+
+with :
+\[\frac{\partial^2 log L}{\partial \alpha \partial \beta} = \frac{\partial^2 log L}{\partial \beta \partial \alpha}\],
+we then have :
+
+\begin{pmatrix} 
+        \frac{n\beta}{\alpha^2} - 2\sum_{i=1}^{n} \frac{\frac{\beta^2}{X_i^2} (\frac{X_i}{\alpha})^{\beta-1}}{[1 + (\frac{X_i}{\alpha})^\beta]^2}&  -\frac{n}{\alpha} + 2\sum_{i=1}^{n} \frac{X_i^\beta log(\frac{X_i}{\alpha})}{[1 + (\frac{X_i}{\alpha})^\beta]^2} \\ -\frac{n}{\alpha} + 2\sum_{i=1}^{n} \frac{X_i^\beta log(\frac{X_i}{\alpha})}{[1 + (\frac{X_i}{\alpha})^\beta]^2} & -\frac{n}{\beta^2} - 2\sum_{i=1}^{n} \frac{X_i^\beta log(\frac{X_i}{\alpha})}{[1 + (\frac{X_i}{\alpha})^\beta]^2}
+\end{pmatrix}
+
+\hypertarget{newton-raphson-algorithm}{%
+\subsection{Newton Raphson algorithm}\label{newton-raphson-algorithm}}
+
+Goal: find an approximation of the root (x axis intersection) of a
+function, works for real and complex functions
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  pick a random point x of the function (``first guess'')
+\item
+  find the tangent to the curve at that point x
+\item
+  find the intersection of the tangent with the x axis and make it your
+  new x
+\item
+  repeat until you're close enough (delta-y below a certain threshold
+  epsilon)
+\end{enumerate}
+
+Input: Function f(x), initial guess x0, tolerance epsilon, maximum
+number of iterations max\_iterations
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Set \(x = x_0\)
+\item
+  Set iteration = 0
+\item
+  Repeat the following steps until convergence or reaching the maximum
+  number of iterations:
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \tightlist
+  \item
+    Set \(f\_x = f(x)\)\\
+  \item
+    Set \(f\_prime\_x\) = derivative of \(f(x)\)
+  \item
+    Set \(delta\_x = f\_x / f\_prime\_x\)
+  \item
+    Set \(x = x - delta\_x\)
+  \item
+    Increment iteration by 1
+  \item
+    If abs(\(delta\_x\)) \textless{} epsilon or iteration \textgreater=
+    \(max\_iterations\), exit the loop
+  \end{enumerate}
+\item
+  Output the final approximation x as the root of the function f(x) \#\#
+  Newton Raphson algorithm on R Preparation (dependencies \& data):
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(fitdistrplus)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: MASS
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: survival
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gpigs }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(}\StringTok{"surv.gpigs.txt"}\NormalTok{, }\AttributeTok{header =}\NormalTok{ T, }\AttributeTok{sep =} \StringTok{";"}\NormalTok{)}
+\NormalTok{gpigs.noncensored }\OtherTok{\textless{}{-}}\NormalTok{ gpigs[gpigs}\SpecialCharTok{$}\NormalTok{censored }\SpecialCharTok{==} \DecValTok{0}\NormalTok{,]}
+\NormalTok{gpigs.mc }\OtherTok{\textless{}{-}}\NormalTok{ gpigs.noncensored}\SpecialCharTok{$}\NormalTok{lifetime[gpigs.noncensored}\SpecialCharTok{$}\NormalTok{regime }\SpecialCharTok{==} \StringTok{"M\_C"}\NormalTok{]}
+\NormalTok{gpigs.mc.with\_censored }\OtherTok{\textless{}{-}}\NormalTok{ gpigs}\SpecialCharTok{$}\NormalTok{lifetime[gpigs}\SpecialCharTok{$}\NormalTok{regime }\SpecialCharTok{==} \StringTok{"M\_C"}\NormalTok{]}
+\NormalTok{gpigs.m43 }\OtherTok{\textless{}{-}}\NormalTok{ gpigs.noncensored}\SpecialCharTok{$}\NormalTok{lifetime[gpigs.noncensored}\SpecialCharTok{$}\NormalTok{regime }\SpecialCharTok{==} \StringTok{"M\_4.3"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{score\_alpha }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x, alpha, beta) \{}
+\NormalTok{  n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(x)}
+\NormalTok{  score }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\NormalTok{((n }\SpecialCharTok{*}\NormalTok{ beta) }\SpecialCharTok{/}\NormalTok{ alpha) }\SpecialCharTok{+} \DecValTok{2} \SpecialCharTok{*} \FunctionTok{sum}\NormalTok{((beta }\SpecialCharTok{/}\NormalTok{ x) }\SpecialCharTok{*}\NormalTok{ ((x }\SpecialCharTok{/}\NormalTok{ alpha)}\SpecialCharTok{\^{}}\NormalTok{(beta }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ (x }\SpecialCharTok{/}\NormalTok{ alpha)}\SpecialCharTok{\^{}}\NormalTok{beta))}
+  \FunctionTok{return}\NormalTok{(score)}
+\NormalTok{\}}
+
+\NormalTok{score\_beta }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x, alpha, beta) \{}
+\NormalTok{  n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(x)}
+\NormalTok{  score }\OtherTok{\textless{}{-}}\NormalTok{ (n }\SpecialCharTok{/}\NormalTok{ beta) }\SpecialCharTok{{-}}\NormalTok{ (n }\SpecialCharTok{*} \FunctionTok{log}\NormalTok{(alpha)) }\SpecialCharTok{+} \FunctionTok{sum}\NormalTok{(}\FunctionTok{log}\NormalTok{(x)) }\SpecialCharTok{+} \DecValTok{2} \SpecialCharTok{*} \FunctionTok{sum}\NormalTok{(((x }\SpecialCharTok{/}\NormalTok{ alpha)}\SpecialCharTok{\^{}}\NormalTok{beta) }\SpecialCharTok{*} \FunctionTok{log}\NormalTok{(x }\SpecialCharTok{/}\NormalTok{ alpha) }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ (x }\SpecialCharTok{/}\NormalTok{ alpha)}\SpecialCharTok{\^{}}\NormalTok{beta))}
+  \FunctionTok{return}\NormalTok{(score)}
+\NormalTok{\}}
+
+\NormalTok{loglogistic\_hessian }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x, n, alpha, beta) \{}
+\NormalTok{  hessian }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\NormalTok{  xi }\OtherTok{\textless{}{-}}\NormalTok{ x}
+\NormalTok{  hessian[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ (n }\SpecialCharTok{*}\NormalTok{ beta }\SpecialCharTok{/}\NormalTok{ alpha}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{{-}}\NormalTok{ (}\DecValTok{2} \SpecialCharTok{*} \FunctionTok{sum}\NormalTok{((beta}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{/}\NormalTok{ xi}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{*}\NormalTok{ ((xi }\SpecialCharTok{/}\NormalTok{ alpha)}\SpecialCharTok{\^{}}\NormalTok{(beta }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{/}\NormalTok{ ((}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ (xi }\SpecialCharTok{/}\NormalTok{ alpha)}\SpecialCharTok{\^{}}\NormalTok{beta)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)))}
+\NormalTok{  hessian[}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\NormalTok{(n }\SpecialCharTok{/}\NormalTok{ beta}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{{-}}\NormalTok{ (}\DecValTok{2} \SpecialCharTok{*} \FunctionTok{sum}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{ (xi}\SpecialCharTok{\^{}}\NormalTok{beta }\SpecialCharTok{*} \FunctionTok{log}\NormalTok{(xi }\SpecialCharTok{/}\NormalTok{ alpha)) }\SpecialCharTok{/}\NormalTok{ ((}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ (xi }\SpecialCharTok{/}\NormalTok{ alpha)}\SpecialCharTok{\^{}}\NormalTok{beta)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)))}
+\NormalTok{  hessian[}\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\NormalTok{(n }\SpecialCharTok{/}\NormalTok{ alpha) }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{2} \SpecialCharTok{*} \FunctionTok{sum}\NormalTok{((}\DecValTok{2} \SpecialCharTok{*}\NormalTok{ xi}\SpecialCharTok{\^{}}\NormalTok{beta }\SpecialCharTok{*} \FunctionTok{log}\NormalTok{(xi }\SpecialCharTok{/}\NormalTok{ alpha)) }\SpecialCharTok{/}\NormalTok{ ((}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ (xi }\SpecialCharTok{/}\NormalTok{ alpha)}\SpecialCharTok{\^{}}\NormalTok{beta)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)))}
+\NormalTok{  hessian[}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((}\DecValTok{2} \SpecialCharTok{*}\NormalTok{ xi}\SpecialCharTok{\^{}}\NormalTok{beta }\SpecialCharTok{*} \FunctionTok{log}\NormalTok{(xi }\SpecialCharTok{/}\NormalTok{ alpha)) }\SpecialCharTok{/}\NormalTok{ ((}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ (xi }\SpecialCharTok{/}\NormalTok{ alpha)}\SpecialCharTok{\^{}}\NormalTok{beta)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
+  \FunctionTok{return}\NormalTok{(hessian)}
+\NormalTok{\}}
+
+
+\NormalTok{NR\_fit\_LogLogistic\_hessian }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x, params\_0, }\AttributeTok{eps =} \FloatTok{0.00001}\NormalTok{)}
+\NormalTok{\{}
+\NormalTok{  params }\OtherTok{\textless{}{-}}\NormalTok{ params\_0}
+\NormalTok{  n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(x)}
+  
+\NormalTok{  sumlogx }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(}\FunctionTok{log}\NormalTok{(x))}
+  
+\NormalTok{  diff }\OtherTok{\textless{}{-}} \ConstantTok{Inf}
+\NormalTok{  alpha }\OtherTok{\textless{}{-}}\NormalTok{ params\_0[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  beta }\OtherTok{\textless{}{-}}\NormalTok{ params\_0[}\DecValTok{2}\NormalTok{]}
+  
+  \ControlFlowTok{while}\NormalTok{ (diff }\SpecialCharTok{\textgreater{}}\NormalTok{ eps)}
+\NormalTok{  \{}
+\NormalTok{    params.old }\OtherTok{\textless{}{-}}\NormalTok{ params}
+    \CommentTok{\# Gradient vector}
+\NormalTok{    s }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{score\_alpha}\NormalTok{(x, alpha, beta), }\FunctionTok{score\_beta}\NormalTok{(x, alpha, beta))}
+    
+    \CommentTok{\# Calculate Hessian matrix}
+\NormalTok{    H }\OtherTok{\textless{}{-}} \FunctionTok{loglogistic\_hessian}\NormalTok{(x, n, alpha, beta)}
+    
+    \CommentTok{\# Update parametres using hessian matrix}
+\NormalTok{    params }\OtherTok{\textless{}{-}}\NormalTok{ params }\SpecialCharTok{{-}} \FunctionTok{solve}\NormalTok{(H) }\SpecialCharTok{\%*\%}\NormalTok{ s}
+\NormalTok{    alpha }\OtherTok{\textless{}{-}}\NormalTok{ params[}\DecValTok{1}\NormalTok{]}
+\NormalTok{    beta }\OtherTok{\textless{}{-}}\NormalTok{ params[}\DecValTok{2}\NormalTok{]}
+    
+\NormalTok{    diff }\OtherTok{\textless{}{-}} \FunctionTok{abs}\NormalTok{(}\FunctionTok{sum}\NormalTok{(params }\SpecialCharTok{{-}}\NormalTok{ params.old))}
+\NormalTok{  \}}
+  
+  \FunctionTok{list}\NormalTok{(}\AttributeTok{params =}\NormalTok{ params, }\AttributeTok{H =}\NormalTok{ H)}
+\NormalTok{\}}
+
+\FunctionTok{NR\_fit\_LogLogistic\_hessian}\NormalTok{(gpigs.m43, }\FunctionTok{c}\NormalTok{(}\DecValTok{153}\NormalTok{, }\DecValTok{3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $params
+##            [,1]
+## [1,] 160.270238
+## [2,]   2.914891
+## 
+## $H
+##               [,1]     [,2]
+## [1,] -9.561138e-03 -1887540
+## [2,] -3.775081e+06 -1887549
+\end{verbatim}
+
+\hypertarget{monte-carlo-experiment}{%
+\subsection{Monte-Carlo experiment}\label{monte-carlo-experiment}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(}\StringTok{"mc\_res\_with\_censoring\_1k\_iterations\_452\_2.csv"}\NormalTok{,}\AttributeTok{header=}\NormalTok{T)}
+\NormalTok{res}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           X100         X500        X1000        X5000
+## 1 2.199421e+01 2.687885e+01 2.550282e+01 7.139860e+00
+## 2 1.713783e-05 1.642928e-05 1.589551e-05 4.856685e-06
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rloglogis }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(n, alpha, beta) \{}
+\NormalTok{  u }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(n)  }\CommentTok{\# Generate n random numbers from a uniform distribution}
+  
+\NormalTok{  x }\OtherTok{\textless{}{-}}\NormalTok{ alpha }\SpecialCharTok{*}\NormalTok{ ((}\DecValTok{1} \SpecialCharTok{/}\NormalTok{ u }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{/}\NormalTok{ beta))  }\CommentTok{\# Transform the uniform random numbers using the inverse CDF}
+  
+  \FunctionTok{return}\NormalTok{(x)}
+\NormalTok{\}}
+
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{42}\NormalTok{)}
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\CommentTok{\# some values needed for later}
+\NormalTok{n\_values }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{500}\NormalTok{, }\DecValTok{1000}\NormalTok{, }\DecValTok{5000}\NormalTok{, }\DecValTok{10000}\NormalTok{) }\CommentTok{\# sample sizes}
+\NormalTok{I }\OtherTok{\textless{}{-}} \DecValTok{1000} \CommentTok{\# no. of iterations}
+\NormalTok{alpha0 }\OtherTok{\textless{}{-}} \FloatTok{452.6}
+\NormalTok{beta0 }\OtherTok{\textless{}{-}} \FloatTok{2.2}
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\CommentTok{\# censoring function, for a given quantile sets the max value and censors everything above}
+\NormalTok{censor }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x, }\AttributeTok{p =} \FloatTok{0.9}\NormalTok{) \{}
+  \CommentTok{\# for example the top 10\% is everything above the 0.9 quantile}
+\NormalTok{  top\_ten }\OtherTok{\textless{}{-}} \FunctionTok{quantile}\NormalTok{(x, p)}
+\NormalTok{  res }\OtherTok{=}\NormalTok{ x}
+  \CommentTok{\# censor that shit}
+\NormalTok{  res[x }\SpecialCharTok{\textgreater{}}\NormalTok{ top\_ten] }\OtherTok{=}\NormalTok{ top\_ten}
+  \FunctionTok{return}\NormalTok{(res)}
+\NormalTok{\}}
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\CommentTok{\# the montecarlo iteration for a given sample size}
+\NormalTok{mc }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(n, I, alpha0, beta0) \{}
+  \CommentTok{\# initialise the matrices that will track the estimates throughout the iterations}
+\NormalTok{  est }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\AttributeTok{nrow =} \DecValTok{0}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{)}
+  \CommentTok{\# iterate}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{I) \{}
+    \FunctionTok{print}\NormalTok{(}\FunctionTok{c}\NormalTok{(i, I))}
+    \CommentTok{\# create random data set that follows a log{-}logistic distribution with the given parametres}
+\NormalTok{    dat }\OtherTok{\textless{}{-}} \FunctionTok{rloglogis}\NormalTok{(n, alpha0, beta0)}
+    \CommentTok{\# censor the top 10\%}
+\NormalTok{    dat\_censored }\OtherTok{\textless{}{-}} \FunctionTok{censor}\NormalTok{(dat)}
+\NormalTok{    est\_temp }\OtherTok{\textless{}{-}} \FunctionTok{NR\_fit\_LogLogistic\_hessian}\NormalTok{(dat\_censored, }\FunctionTok{c}\NormalTok{(alpha0, beta0), }\FloatTok{0.0001}\NormalTok{)}\SpecialCharTok{$}\NormalTok{params}
+\NormalTok{    est }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(est, }\FunctionTok{c}\NormalTok{(est\_temp[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{], est\_temp[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{]))}
+\NormalTok{  \}}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{mean}\NormalTok{((est[,}\DecValTok{1}\NormalTok{] }\SpecialCharTok{{-}}\NormalTok{ alpha0)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{), }\FunctionTok{mean}\NormalTok{((est[,}\DecValTok{2}\NormalTok{] }\SpecialCharTok{{-}}\NormalTok{ beta0)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)))}
+\NormalTok{\}}
+\CommentTok{\# test\_mc \textless{}{-} mc(100, I, alpha0, beta0)}
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\CommentTok{\# here we iterated through different sample sizes but it took several hours}
+\CommentTok{\# so we saved the result as a csv and in further processing just load it from the file}
+\CommentTok{\#}
+\CommentTok{\# res \textless{}{-} matrix(nrow = 2, ncol = 0)}
+\CommentTok{\# for (i in 1:length(n\_values)) \{}
+\CommentTok{\#   res \textless{}{-} cbind(res, mc(n\_values[i], I, alpha0, beta0))}
+\CommentTok{\# \}}
+\CommentTok{\# colnames(res) \textless{}{-} n\_values[1:4]}
+\CommentTok{\# write.table(res, "mc\_res\_with\_censoring\_1k\_iterations\_452\_2.csv")}
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\NormalTok{res }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(}\FunctionTok{read.table}\NormalTok{(}\StringTok{"mc\_res\_with\_censoring\_1k\_iterations\_452\_2.csv"}\NormalTok{,}\AttributeTok{header=}\NormalTok{T))}
+
+\FunctionTok{barplot}\NormalTok{(}\FunctionTok{log}\NormalTok{(res),}
+        \AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{, }\StringTok{"orange"}\NormalTok{),}
+        \AttributeTok{beside =} \ConstantTok{TRUE}\NormalTok{,}
+        \AttributeTok{main =} \StringTok{"Mean square error of the NR{-}fit parameter estimates }\SpecialCharTok{\textbackslash{}n}\StringTok{ based on sample size for the }\SpecialCharTok{\textbackslash{}n}\StringTok{ Log{-}Logistic distribution }\SpecialCharTok{\textbackslash{}n}\StringTok{ (Logarithmic scale)"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Sample size"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"log(MSE)"}\NormalTok{)}
+
+
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{,}
+       \AttributeTok{legend =} \FunctionTok{c}\NormalTok{(}\StringTok{"Alpha"}\NormalTok{, }\StringTok{"Beta"}\NormalTok{),}
+       \AttributeTok{fill =} \FunctionTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{, }\StringTok{"orange"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{FINAL_adv_stat_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+We chose a logarithmic scale to be able to see how both parametres
+evolve. Our observation is that the final parametre estimates vary a lot
+more based on the choice of initial parametres though. Same goes for
+computation time, it can be exorbitantly high depending on which initial
+parametres we put. Probably our NR-fit function isn't very robust.
+
+\hypertarget{real-data-analysis}{%
+\section{Real data analysis}\label{real-data-analysis}}
+
+\hypertarget{comparison-of-2-treatments-with-descriptive-analysis}{%
+\subsection{Comparison of 2 treatments with descriptive
+analysis}\label{comparison-of-2-treatments-with-descriptive-analysis}}
+
+In our data we have the lifetimes of guinea pigs in days and also their
+regime and if the value of the lifetime is censored or not.
+
+We want to study the resistance of guinea pigs to Tubercle Bacili.
+
+We take for the MC guinea pigs all of them containing censored ones and
+non censored ones.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(gpigs.mc.with\_censored)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    18.0   214.0   621.0   500.9   735.0   735.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(gpigs.m43)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    10.0   108.0   149.5   176.8   224.0   555.0
+\end{verbatim}
+
+As we can see, the guinea pigs with MC regime are surviving longer than
+the ones with M43 regime.
+
+The mean for the MC guinea pigs is around 500 wich is almost three times
+bigger than the mean for M43 guinea pigs (\(176.8\))
+
+\hypertarget{fit-a-distribution-to-the-lifetime-with-exponential-distribution}{%
+\subsection{fit a distribution to the ``lifetime'' with Exponential
+distribution}\label{fit-a-distribution-to-the-lifetime-with-exponential-distribution}}
+
+\hypertarget{for-mc-group}{%
+\subsubsection{for MC group}\label{for-mc-group}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fe }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.mc, }\StringTok{"exp"}\NormalTok{)}
+\NormalTok{fe}\SpecialCharTok{$}\NormalTok{estimate}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        rate 
+## 0.002859783
+\end{verbatim}
+
+This rate is pretty low so the mean distribution will be pretty high.
+Which is maybe not what we expected, The Histrogram will give more
+precision about it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{denscomp}\NormalTok{(}\FunctionTok{list}\NormalTok{(fe))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{FINAL_adv_stat_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+As we can see the exponential function is truly not adapted to our data.
+The curve is not following well the true values.
+
+\hypertarget{for-m43-group}{%
+\subsubsection{for M43 group}\label{for-m43-group}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fe }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.m43, }\StringTok{"exp"}\NormalTok{) }
+\NormalTok{fe}\SpecialCharTok{$}\NormalTok{estimate}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        rate 
+## 0.005655487
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{denscomp}\NormalTok{(}\FunctionTok{list}\NormalTok{(fe))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{FINAL_adv_stat_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+As we can see the fitting is a bit better with these data but still not
+good enought.
+
+\hypertarget{do-the-same-for-log-logistic-distribution}{%
+\subsection{Do the same for log logistic
+distribution}\label{do-the-same-for-log-logistic-distribution}}
+
+\hypertarget{define-the-distribution-function}{%
+\subsubsection{Define the distribution
+function}\label{define-the-distribution-function}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dloglogis }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x, alpha, beta) \{}
+\NormalTok{  res }\OtherTok{\textless{}{-}}\NormalTok{ (beta}\SpecialCharTok{/}\NormalTok{alpha) }\SpecialCharTok{*}\NormalTok{ (x}\SpecialCharTok{/}\NormalTok{alpha)}\SpecialCharTok{\^{}}\NormalTok{(beta}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{+}\NormalTok{(x}\SpecialCharTok{/}\NormalTok{alpha)}\SpecialCharTok{\^{}}\NormalTok{beta)}\SpecialCharTok{\^{}{-}}\DecValTok{2}
+  \FunctionTok{return}\NormalTok{(res)}
+\NormalTok{\}}
+\NormalTok{ploglogis }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(q, alpha, beta) \{}
+\NormalTok{  res }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{/}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ (q}\SpecialCharTok{/}\NormalTok{alpha)}\SpecialCharTok{\^{}}\NormalTok{beta)}
+  \FunctionTok{return}\NormalTok{(res)}
+\NormalTok{\}}
+\NormalTok{qloglogis }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(p, alpha, beta) \{}
+\NormalTok{  res }\OtherTok{\textless{}{-}}\NormalTok{ alpha }\SpecialCharTok{*}\NormalTok{ ((}\DecValTok{1}\SpecialCharTok{/}\NormalTok{p) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{beta)}
+  \FunctionTok{return}\NormalTok{(res)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{control-group}{%
+\subsubsection{Control group :}\label{control-group}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# MC regime (without censored data for the moment)}
+\NormalTok{fll }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.mc, }\StringTok{"loglogis"}\NormalTok{, }\AttributeTok{method =} \StringTok{"mle"}\NormalTok{, }\AttributeTok{start=}\FunctionTok{list}\NormalTok{(}\AttributeTok{alpha=}\DecValTok{10}\NormalTok{, }\AttributeTok{beta=}\DecValTok{5}\NormalTok{))}
+\NormalTok{fll}\SpecialCharTok{$}\NormalTok{estimate}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      alpha       beta 
+## 282.086118   2.014417
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{denscomp}\NormalTok{(}\FunctionTok{list}\NormalTok{(fll), }\AttributeTok{main =} \StringTok{"MC regime"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{FINAL_adv_stat_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+This graph represent the lifetimes of guinea pigs for animals with MC
+regime but without the censored data. As we can see the curve is
+following pretty well the data especially for the beginning.
+
+\hypertarget{m4.3-regime-group}{%
+\subsubsection{M4.3-Regime group :}\label{m4.3-regime-group}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# M4.3 regime}
+\NormalTok{fll }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.noncensored}\SpecialCharTok{$}\NormalTok{lifetime[gpigs.noncensored}\SpecialCharTok{$}\NormalTok{regime }\SpecialCharTok{==} \StringTok{"M\_4.3"}\NormalTok{], }\StringTok{"loglogis"}\NormalTok{, }\AttributeTok{method =} \StringTok{"mle"}\NormalTok{, }\AttributeTok{start=}\FunctionTok{list}\NormalTok{(}\AttributeTok{alpha=}\DecValTok{10}\NormalTok{, }\AttributeTok{beta=}\DecValTok{5}\NormalTok{))}
+\NormalTok{fll}\SpecialCharTok{$}\NormalTok{estimate}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      alpha       beta 
+## 152.389696   3.012415
+\end{verbatim}
+
+The estimation of alpha and beta are a bit different for the M43 guinea
+pigs than for the MC guinea pigs.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{denscomp}\NormalTok{(}\FunctionTok{list}\NormalTok{(fll), }\AttributeTok{main =} \StringTok{"M4.3 regime"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{FINAL_adv_stat_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+In this case the loglogistic distribution fit perfectly with the data as
+we can see on the graph.
+
+\hypertarget{try-other-distributions}{%
+\subsection{Try other distributions}\label{try-other-distributions}}
+
+\#\#\#Weibull, Gamma, log-Normal fit on the control group
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fw }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.mc, }\StringTok{"weibull"}\NormalTok{)}
+\NormalTok{fg }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.mc, }\StringTok{"gamma"}\NormalTok{) }
+\NormalTok{fln }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.mc, }\StringTok{"lnorm"}\NormalTok{) }
+\NormalTok{plot.legend }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Weibull"}\NormalTok{, }\StringTok{"lognormal"}\NormalTok{, }\StringTok{"gamma"}\NormalTok{)}
+\FunctionTok{denscomp}\NormalTok{(}\FunctionTok{list}\NormalTok{(fw, fln, fg), }\AttributeTok{legendtext =}\NormalTok{ plot.legend) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{FINAL_adv_stat_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qqcomp}\NormalTok{(}\FunctionTok{list}\NormalTok{(fw, fln, fg), }\AttributeTok{legendtext =}\NormalTok{ plot.legend) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{FINAL_adv_stat_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cdfcomp}\NormalTok{(}\FunctionTok{list}\NormalTok{(fw, fln, fg), }\AttributeTok{legendtext =}\NormalTok{ plot.legend) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{FINAL_adv_stat_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ppcomp}\NormalTok{(}\FunctionTok{list}\NormalTok{(fw, fln, fg), }\AttributeTok{legendtext =}\NormalTok{ plot.legend)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{FINAL_adv_stat_files/figure-latex/unnamed-chunk-19-1.pdf}
+
+The three other distribution are fitting pretty well to our data, but
+the closest distribution is the gamma distribution.
+
+\hypertarget{weibull-gamma-log-normal-fit-on-the-4.3-group}{%
+\subsubsection{Weibull, Gamma, log-Normal fit on the 4.3
+group}\label{weibull-gamma-log-normal-fit-on-the-4.3-group}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fw }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.m43, }\StringTok{"weibull"}\NormalTok{)}
+\NormalTok{fg }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.m43, }\StringTok{"gamma"}\NormalTok{) }
+\NormalTok{fln }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.m43, }\StringTok{"lnorm"}\NormalTok{) }
+\NormalTok{plot.legend }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Weibull"}\NormalTok{, }\StringTok{"lognormal"}\NormalTok{, }\StringTok{"gamma"}\NormalTok{)}
+\FunctionTok{denscomp}\NormalTok{(}\FunctionTok{list}\NormalTok{(fw, fln, fg), }\AttributeTok{legendtext =}\NormalTok{ plot.legend) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{FINAL_adv_stat_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qqcomp}\NormalTok{(}\FunctionTok{list}\NormalTok{(fw, fln, fg), }\AttributeTok{legendtext =}\NormalTok{ plot.legend) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{FINAL_adv_stat_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cdfcomp}\NormalTok{(}\FunctionTok{list}\NormalTok{(fw, fln, fg), }\AttributeTok{legendtext =}\NormalTok{ plot.legend) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{FINAL_adv_stat_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ppcomp}\NormalTok{(}\FunctionTok{list}\NormalTok{(fw, fln, fg), }\AttributeTok{legendtext =}\NormalTok{ plot.legend)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{FINAL_adv_stat_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+Same than previously the distributions are fitting well to the data of
+M43 guinea pigs and the closest is either the gamma distribution either
+the lognormal distribution.
+
+We had estimated the \(alpha = 152.4\) and \(beta = 3.0\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fw}\SpecialCharTok{$}\NormalTok{estimate}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      shape      scale 
+##   1.825211 199.586910
+\end{verbatim}
+
+For the weibull distribution the shape (beta) is to low and the scale
+much to high.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fg}\SpecialCharTok{$}\NormalTok{estimate}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      shape       rate 
+## 3.08241826 0.01743161
+\end{verbatim}
+
+for the gamma distribution, the shape and the rate looks pretty good and
+we will confirm this at the end.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fln}\SpecialCharTok{$}\NormalTok{estimate}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   meanlog     sdlog 
+## 5.0042920 0.6290239
+\end{verbatim}
+
+the meanlog and the sdlog are pretty fitting the data.
+
+\hypertarget{provide-95-basic-bootstrap-confidence-interval}{%
+\subsection{provide 95\% basic bootstrap confidence
+interval}\label{provide-95-basic-bootstrap-confidence-interval}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{loglogis }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x, alpha, beta) \{}
+\NormalTok{  res }\OtherTok{\textless{}{-}}\NormalTok{ (beta}\SpecialCharTok{/}\NormalTok{alpha) }\SpecialCharTok{*}\NormalTok{ (x}\SpecialCharTok{/}\NormalTok{alpha)}\SpecialCharTok{\^{}}\NormalTok{(beta}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{+}\NormalTok{(x}\SpecialCharTok{/}\NormalTok{alpha)}\SpecialCharTok{\^{}}\NormalTok{beta)}\SpecialCharTok{\^{}{-}}\DecValTok{2}
+  \FunctionTok{return}\NormalTok{(res)}
+\NormalTok{\}}
+\CommentTok{\# and our data}
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =}\NormalTok{ gpigs}\SpecialCharTok{$}\NormalTok{lifetime,}
+                   \AttributeTok{delta =}\NormalTok{ gpigs}\SpecialCharTok{$}\NormalTok{censored)}
+\NormalTok{lifetimes }\OtherTok{\textless{}{-}}\NormalTok{ gpigs}\SpecialCharTok{$}\NormalTok{lifetime}
+\CommentTok{\# Function to calculate the statistic }
+\NormalTok{calculate\_statistic }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(fitdist) \{}
+\NormalTok{  fit\_R }\OtherTok{=} \FunctionTok{fitdist}\NormalTok{(}\AttributeTok{data =}\NormalTok{ lifetimes, }\AttributeTok{distr =} \StringTok{"loglogis"}\NormalTok{, }\AttributeTok{method =} \StringTok{"mle"}\NormalTok{, }\AttributeTok{start=}\FunctionTok{list}\NormalTok{(}\AttributeTok{alpha=}\DecValTok{10}\NormalTok{, }\AttributeTok{beta=}\DecValTok{5}\NormalTok{))}
+  \FunctionTok{return}\NormalTok{(fit\_R)}
+\NormalTok{\}}
+\NormalTok{fit\_R }\OtherTok{=} \FunctionTok{fitdist}\NormalTok{(}\AttributeTok{data =}\NormalTok{ lifetimes, }\AttributeTok{distr =} \StringTok{"loglogis"}\NormalTok{, }\AttributeTok{method =} \StringTok{"mle"}\NormalTok{, }\AttributeTok{start=}\FunctionTok{list}\NormalTok{(}\AttributeTok{alpha=}\DecValTok{10}\NormalTok{, }\AttributeTok{beta=}\DecValTok{5}\NormalTok{))}
+
+\CommentTok{\# Parameters}
+\NormalTok{B }\OtherTok{\textless{}{-}} \DecValTok{1000}  \CommentTok{\# Number of bootstrap iterations}
+\NormalTok{bootstrap\_samples }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\StringTok{"numeric"}\NormalTok{, B)}
+
+\CommentTok{\# Perform bootstrap iterations}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{B) \{}
+  \CommentTok{\# Randomly sample with replacement the pairs (xi, delta\_i)}
+\NormalTok{  bootstrap\_sample }\OtherTok{\textless{}{-}}\NormalTok{ data[}\FunctionTok{sample}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(data), }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{), ]}
+  
+  \CommentTok{\# Perform the desired analysis or calculation on the bootstrap sample}
+\NormalTok{  bootstrap\_statistic }\OtherTok{\textless{}{-}} \FunctionTok{calculate\_statistic}\NormalTok{(bootstrap\_sample)}
+  
+  \CommentTok{\# Store the result in the list of bootstrap samples}
+\NormalTok{  bootstrap\_samples[i] }\OtherTok{\textless{}{-}}\NormalTok{ bootstrap\_statistic}
+\NormalTok{\}}
+
+\CommentTok{\#display the results}
+\NormalTok{npboot\_CI }\OtherTok{=} \FunctionTok{bootdist}\NormalTok{(fit\_R ,}\AttributeTok{bootmethod =} \StringTok{"nonparam"}\NormalTok{,}\AttributeTok{niter =}\NormalTok{ B)}
+\FunctionTok{summary}\NormalTok{(npboot\_CI)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Nonparametric bootstrap medians and 95% percentile CI 
+##           Median       2.5%      97.5%
+## alpha 275.276211 237.963254 317.275492
+## beta    1.891726   1.744956   2.049876
+\end{verbatim}
+
+\hypertarget{use-proper-information-criteria-and-goodness-of-fit-plots-to-discuss-the-fit-to-the-data.}{%
+\subsection{Use proper information criteria and goodness-of-fit plots to
+discuss the fit to the
+data.}\label{use-proper-information-criteria-and-goodness-of-fit-plots-to-discuss-the-fit-to-the-data.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fw }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.mc, }\StringTok{"weibull"}\NormalTok{)}
+\NormalTok{fg }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.mc, }\StringTok{"gamma"}\NormalTok{) }
+\NormalTok{fln }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.mc, }\StringTok{"lnorm"}\NormalTok{) }
+\NormalTok{fe }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.mc, }\StringTok{"exp"}\NormalTok{) }
+\NormalTok{fll }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.mc, }\StringTok{"loglogis"}\NormalTok{, }\AttributeTok{method =} \StringTok{"mle"}\NormalTok{, }\AttributeTok{start=}\FunctionTok{list}\NormalTok{(}\AttributeTok{alpha=}\DecValTok{10}\NormalTok{, }\AttributeTok{beta=}\DecValTok{5}\NormalTok{))}
+
+\NormalTok{model\_list }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(fe, fll, fw, fg, fln)}
+
+\CommentTok{\# Noms des modèles}
+\NormalTok{model\_names }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"exp"}\NormalTok{, }\StringTok{"loglogis"}\NormalTok{, }\StringTok{"weibull"}\NormalTok{, }\StringTok{"gamma"}\NormalTok{,}\StringTok{"lnorm"}\NormalTok{)}
+
+\CommentTok{\# Évaluer la qualité d\textquotesingle{}ajustement avec gofstat()}
+\NormalTok{gof\_stats }\OtherTok{\textless{}{-}} \FunctionTok{gofstat}\NormalTok{(model\_list, }\AttributeTok{fitnames =}\NormalTok{ model\_names)}
+
+\CommentTok{\# Afficher les résultats}
+\FunctionTok{print}\NormalTok{(gof\_stats)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Goodness-of-fit statistics
+##                                    exp    loglogis   weibull     gamma
+## Kolmogorov-Smirnov statistic 0.1564934   0.9961019 0.1239208 0.1239852
+## Cramer-von Mises statistic   0.4818175  22.4003702 0.2718269 0.2589622
+## Anderson-Darling statistic   3.0970754 124.9865559 1.6639126 1.5902238
+##                                  lnorm
+## Kolmogorov-Smirnov statistic 0.1411335
+## Cramer-von Mises statistic   0.2886472
+## Anderson-Darling statistic   1.8220951
+## 
+## Goodness-of-fit criteria
+##                                     exp loglogis  weibull    gamma    lnorm
+## Akaike's Information Criterion 893.4113 893.8985 879.8406 882.3291 891.7370
+## Bayesian Information Criterion 895.5856 898.2473 884.1894 886.6778 896.0858
+\end{verbatim}
+
+The most favorized distribution for the \(mc\) guinea pigs is the gamma
+one closely followed by the weibull one.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fw }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.m43, }\StringTok{"weibull"}\NormalTok{)}
+\NormalTok{fg }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.m43, }\StringTok{"gamma"}\NormalTok{) }
+\NormalTok{fln }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.m43, }\StringTok{"lnorm"}\NormalTok{) }
+\NormalTok{fe }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.m43, }\StringTok{"exp"}\NormalTok{) }
+\NormalTok{fll }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(gpigs.m43, }\StringTok{"loglogis"}\NormalTok{, }\AttributeTok{method =} \StringTok{"mle"}\NormalTok{, }\AttributeTok{start=}\FunctionTok{list}\NormalTok{(}\AttributeTok{alpha=}\DecValTok{10}\NormalTok{, }\AttributeTok{beta=}\DecValTok{5}\NormalTok{))}
+
+\NormalTok{model\_list }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(fe, fll, fw, fg, fln)}
+
+\CommentTok{\# Noms des modèles}
+\NormalTok{model\_names }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"exp"}\NormalTok{, }\StringTok{"loglogis"}\NormalTok{, }\StringTok{"weibull"}\NormalTok{, }\StringTok{"gamma"}\NormalTok{,}\StringTok{"lnorm"}\NormalTok{)}
+
+\CommentTok{\# Évaluer la qualité d\textquotesingle{}ajustement avec gofstat()}
+\NormalTok{gof\_stats }\OtherTok{\textless{}{-}} \FunctionTok{gofstat}\NormalTok{(model\_list, }\AttributeTok{fitnames =}\NormalTok{ model\_names)}
+
+\CommentTok{\# Afficher les résultats}
+\FunctionTok{print}\NormalTok{(gof\_stats)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Goodness-of-fit statistics
+##                                    exp    loglogis   weibull      gamma
+## Kolmogorov-Smirnov statistic 0.2945495   0.9997269 0.1048345 0.09073485
+## Cramer-von Mises statistic   1.4040565  23.7143219 0.1678917 0.09377564
+## Anderson-Darling statistic   7.2647928 145.0213610 1.0069058 0.57934064
+##                                  lnorm
+## Kolmogorov-Smirnov statistic 0.1104098
+## Cramer-von Mises statistic   0.1024276
+## Anderson-Darling statistic   0.7380047
+## 
+## Goodness-of-fit criteria
+##                                     exp loglogis  weibull    gamma    lnorm
+## Akaike's Information Criterion 891.2186 855.1982 858.7241 855.6027 862.1888
+## Bayesian Information Criterion 893.4953 859.7516 863.2775 860.1560 866.7421
+\end{verbatim}
+
+In the case of \(m43\) guinea pigs the most favorized distribution is
+the gamma distribution for the Goodness-of-fit statistics and the
+loglogistic for the Goodness-of-fit criteria.
+
+\end{document}

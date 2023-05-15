@@ -2,9 +2,9 @@
 title: "Advanced statistic"
 author: "Anne STAFF, Bianca BOI"
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 editor_options:
   markdown:
     wrap: 72
@@ -67,8 +67,8 @@ so the sampling hypothesis is admitted.
 The c.d.f of X belongs well to a parametric family $F$, such that :
 $$F = \{ F_\theta;\theta \in \Theta \}$$
 
-Where \$ \Theta \subseteq R\^d \$ is a parameter space, so the
-parametric hypothesis is admitted.
+Where $$\Theta \subseteq R^d$$ is a parameter space, so the parametric
+hypothesis is admitted.
 
 $$F(\theta; \alpha,\beta) = \frac{1}{1 +(\frac{\theta}{\alpha})^\beta} =  F(\theta'; \alpha,\beta) = \frac{1}{1 +(\frac{\theta'}{\alpha})^\beta} \iff \theta = \theta' $$
 So the identifiability is admitted.
@@ -108,7 +108,7 @@ Hessian Matrix:
 \end{pmatrix}
 ```
 with :
-$\frac{\partial^2 log L}{\partial \alpha \partial \beta} = \frac{\partial^2 log L}{\partial \beta \partial \alpha}$,
+$$\frac{\partial^2 log L}{\partial \alpha \partial \beta} = \frac{\partial^2 log L}{\partial \beta \partial \alpha}$$,
 we then have :
 
 ```{=tex}
@@ -278,7 +278,7 @@ mc <- function(n, I, alpha0, beta0) {
 # test_mc <- mc(100, I, alpha0, beta0)
 #####################################
 # here we iterated through different sample sizes but it took several hours
-# so we saved ther esult as a csv and load it for the graph and for knitting this
+# so we saved the result as a csv and in further processing just load it from the file
 #
 # res <- matrix(nrow = 2, ncol = 0)
 # for (i in 1:length(n_values)) {
